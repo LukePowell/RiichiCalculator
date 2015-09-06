@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mahjong Hand Helper</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menzen_tsumo">Menzen Tsumo</string>
+    <string name="menzen_tsumo_description">This yaku may apply to any closed hand. Any player who draws a winning tile with a closed hand is awarded this yaku</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

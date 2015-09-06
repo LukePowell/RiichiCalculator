@@ -1,0 +1,41 @@
+[
+  {
+    "name" : "R.string.menzen_tsumo",
+    "han" : 1,
+    "description": "R.string.menzen_tsumo_description"
+  },
+  {
+    "name": "R.string.riichi",
+    "han": 1,
+    "description": "R.string.riichi_description"
+  },
+  {
+    "name": "R.string.ippatsu",
+    "han": 1,
+    "description": "R.string.ippatsu_description"
+  },
+  {
+    "name": "R.string.pinfu",
+    "han": 1,
+    "description": "R.string.pinfu_description",
+    "hand": [
+      {
+        "suit": 0,
+        "value": 2
+      },
+      {
+        "suit": 0,
+        "value": 3
+      },
+      {
+        "suit": 0,
+        "value": 4
+      }
+    ]
+  },
+  {
+    "name": "R.string.iipeikou",
+    "han": 1,
+    "description": "R.string.iipeikou_description"
+  }
+]

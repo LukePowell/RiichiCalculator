@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Arrays to map suits and values to drawables -->
+
+    <array name="souzu">
+        <item>@drawable/bamboo1</item>
+        <item>@drawable/bamboo2</item>
+        <item>@drawable/bamboo3</item>
+        <item>@drawable/bamboo4</item>
+        <item>@drawable/bamboo5</item>
+        <item>@drawable/bamboo6</item>
+        <item>@drawable/bamboo7</item>
+        <item>@drawable/bamboo8</item>
+        <item>@drawable/bamboo9</item>
+    </array>
+
+    <array name="manzu">
+        <item>@drawable/man1</item>
+        <item>@drawable/man2</item>
+        <item>@drawable/man3</item>
+        <item>@drawable/man4</item>
+        <item>@drawable/man5</item>
+        <item>@drawable/man6</item>
+        <item>@drawable/man7</item>
+        <item>@drawable/man8</item>
+        <item>@drawable/man9</item>
+    </array>
+
+    <array name="pinzu">
+        <item>@drawable/pin1</item>
+        <item>@drawable/pin2</item>
+        <item>@drawable/pin3</item>
+        <item>@drawable/pin4</item>
+        <item>@drawable/pin5</item>
+        <item>@drawable/pin6</item>
+        <item>@drawable/pin7</item>
+        <item>@drawable/pin8</item>
+        <item>@drawable/pin9</item>
+    </array>
+
+    <array name="kazehai">
+        <item>@drawable/wind_east</item>
+        <item>@drawable/wind_south</item>
+        <item>@drawable/wind_west</item>
+        <item>@drawable/wind_north</item>
+    </array>
+
+    <array name="sagenpai">
+        <item>@drawable/dragon_haku</item>
+        <item>@drawable/dragon_green</item>
+        <item>@drawable/dragon_chun</item>
+    </array>
+
+    <array name="blank">
+        <item>@drawable/face_down_64px</item>
+    </array>
+
+    <array name="suits">
+        <item>@array/blank</item>
+        <item>@array/manzu</item>
+        <item>@array/souzu</item>
+        <item>@array/pinzu</item>
+        <item>@array/kazehai</item>
+        <item>@array/sagenpai</item>
+    </array>
+</resources>

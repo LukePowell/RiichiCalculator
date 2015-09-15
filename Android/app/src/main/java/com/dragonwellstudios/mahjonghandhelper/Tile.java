@@ -19,6 +19,9 @@
 
 package com.dragonwellstudios.mahjonghandhelper;
 
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
 
@@ -54,6 +57,7 @@ public final class Tile {
     @IntRange(from = -1,to = 9)
     int value;
 
+    //region CONSTRUCTORS --------------------------------------------------------------------------
     /**
      * Creates a blank Tile
      */
@@ -71,7 +75,9 @@ public final class Tile {
         this.suit = suit;
         this.value = value;
     }
+    //endregion
 
+    //region GETTERS/SETTERS -----------------------------------------------------------------------
     /**
      * Retrieves the {@link com.dragonwellstudios.mahjonghandhelper.Tile.Suit}
      * @return The suit of this tile
@@ -83,4 +89,38 @@ public final class Tile {
     public int getValue(){
         return value;
     }
+    //endregion
+
+    //region DRAWABLE ------------------------------------------------------------------------------
+    @DrawableRes int getDrawable(Resources resources){
+        TypedArray array;
+        switch (suit){
+            case MANZU:
+                array = resources.obtainTypedArray(R.array.manzu);
+                break;
+            case SOUZU:
+                array = resources.obtainTypedArray(R.array.souzu);
+                break;
+            case PINZU:
+                array = resources.obtainTypedArray(R.array.pinzu);
+                break;
+            case SANGENPAI:
+                array = resources.obtainTypedArray(R.array.sagenpai);
+                break;
+            case KAZEHAI:
+                array = resources.obtainTypedArray(R.array.kazehai);
+                break;
+            case BLANK:
+                array = resources.obtainTypedArray(R.array.blank);
+                break;
+            default:
+                array = resources.obtainTypedArray(R.array.blank);
+                break;
+        }
+
+        int id = resources.obtainTypedArray(R.array.blank).getInt(value,BLANK);
+        array.recycle();
+        return id;
+    }
+    //endregion
 }

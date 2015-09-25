@@ -36,7 +36,6 @@ public class Yaku {
     /**
      * Example hand for this yaku
      */
-
     Tile[] hand;
     /**
      * Tiles that can complete the yaku

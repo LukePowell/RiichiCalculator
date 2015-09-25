@@ -18,13 +18,14 @@
  */
 package com.dragonwellstudios.mahjonghandhelper.riichi.adapters;
 
-import android.content.res.Resources;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.dragonwellstudios.mahjonghandhelper.BR;
 import com.dragonwellstudios.mahjonghandhelper.R;
-import com.dragonwellstudios.mahjonghandhelper.TileDrawable;
 import com.dragonwellstudios.mahjonghandhelper.riichi.Yaku;
 
 import butterknife.Bind;
@@ -36,16 +37,20 @@ import butterknife.ButterKnife;
  * Simple {@link android.support.v7.widget.RecyclerView.ViewHolder}
  */
 public class YakuViewHolder extends RecyclerView.ViewHolder {
+    private final ViewDataBinding binding;
+
     //region VIEWS ---------------------------------------------------------------------------------
     @Bind(R.id.yaku_name)
     TextView name;
     //endregion
     public YakuViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this,itemView);
+        ButterKnife.bind(this, itemView);
+        binding = DataBindingUtil.bind(itemView);
     }
 
     public void bind(Yaku yaku) {
-        name.setText(yaku.getName());
+        binding.setVariable(BR.yaku, yaku);
+        //name.setText(yaku.getName());
     }
 }

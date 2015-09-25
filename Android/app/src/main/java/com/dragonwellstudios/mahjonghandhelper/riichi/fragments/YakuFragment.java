@@ -29,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dragonwellstudios.mahjonghandhelper.MainActivity;
 import com.dragonwellstudios.mahjonghandhelper.R;
 import com.dragonwellstudios.mahjonghandhelper.riichi.Yaku;
 import com.dragonwellstudios.mahjonghandhelper.riichi.adapters.YakuListAdapter;
@@ -73,6 +74,12 @@ public class YakuFragment extends Fragment {
         Gson gson = builder.create();
 
         yaku = gson.fromJson(new InputStreamReader(getResources().openRawResource(R.raw.yaku)),Yaku[].class);
+        for(Yaku y : yaku){
+            int resId = getResources().getIdentifier(y.getName(), "string", MainActivity.class.getPackage().getName());
+            if(resId != 0) {
+                y.setName(getString(resId));
+            }
+        }
 
         yakuList.setLayoutManager(new LinearLayoutManager(getActivity()));
         yakuList.setAdapter(new YakuListAdapter(yaku));

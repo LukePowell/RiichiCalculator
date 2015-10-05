@@ -8,11 +8,11 @@ package com.dragonwellstudios.mahjonghandhelper;
 public class ExtraMaths {
 
     /**
-     * Rounds a given integer to closest value divisible by 100
+     * Rounds a given integer up to closest value divisible by 100
      * @param value The integral value to round
      * @return The given
      */
-    public static int roundToClosestHundred(int value){
-        return value % 100 > 49 ? value + 100 - value % 100 : value - (value % 100);
+    public static int roundUpToClosestHundred(int value){
+        return value + 100 - value % 100;
     }
 }

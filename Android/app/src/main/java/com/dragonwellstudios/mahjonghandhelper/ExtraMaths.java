@@ -13,6 +13,6 @@ public class ExtraMaths {
      * @return The given
      */
     public static int roundUpToClosestHundred(int value){
-        return value + 100 - value % 100;
+        return value % 100 == 0 ? value : value + 100 - value % 100;
     }
 }

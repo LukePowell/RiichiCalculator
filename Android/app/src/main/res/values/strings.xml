@@ -32,4 +32,6 @@
     <string name="placeholder">Placeholder</string>
     <string name="dealer">Dealer</string>
     <string name="kiriage">Kiriage</string>
+    <string name="test">score %n detail</string>
+    <string name="payout">%1$d points</string>
 </resources>

@@ -13,13 +13,16 @@ import com.dragonwellstudios.mahjonghandhelper.BR;
 public class CalculatorViewModel extends BaseObservable {
 
     private final ScoreTable table;
+    private final PayoutFormatter formatter;
+
     private int han = 1;
     private int fu = 20;
     private Payout payout;
     private String payoutFormatted;
 
-    public CalculatorViewModel(ScoreTable table) {
+    public CalculatorViewModel(ScoreTable table, PayoutFormatter formatter) {
         this.table = table;
+        this.formatter = formatter;
     }
 
     @Bindable
@@ -29,6 +32,7 @@ public class CalculatorViewModel extends BaseObservable {
 
     public void setHan(int value) {
         han = value;
+        payout = table.getPayout(han, fu, false, false);
         notifyPropertyChanged(BR.han);
     }
 
@@ -40,10 +44,5 @@ public class CalculatorViewModel extends BaseObservable {
     public void setFu(int value) {
         fu = value;
         notifyPropertyChanged(BR.fu);
-    }
-
-    @Bindable
-    public String getPayoutFormatted() {
-        return payoutFormatted;
     }
 }

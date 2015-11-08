@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import com.dragonwellstudios.mahjonghandhelper.R;
 
@@ -20,6 +21,7 @@ import butterknife.ButterKnife;
  */
 public class CalculatorFragment extends DialogFragment {
 
+    //region constants
     /**
      * Valid values for {@see R.id.hanPicker}
      */
@@ -31,12 +33,14 @@ public class CalculatorFragment extends DialogFragment {
     //endregion
 
 
-    //region CONSTANTS
+
     //region VIEWS
     @Bind(R.id.hanNumberPicker)
     NumberPicker hanPicker;
     @Bind(R.id.fuNumberPicker)
     NumberPicker fuPicker;
+    @Bind(R.id.scoreDisplay)
+    TextView scoreDisplay;
     //endregion
 
     @Override
@@ -50,6 +54,10 @@ public class CalculatorFragment extends DialogFragment {
 
         fuPicker.setMaxValue(fuValues.length - 1);
         fuPicker.setDisplayedValues(fuValues);
+
+        StringResourcePayoutFormatter formatter =
+                new StringResourcePayoutFormatter(getContext().getResources(), R.string.payout);
+        scoreDisplay.setText(formatter.formatPayout(new Payout(2000, true)));
     }
 
     @Nullable

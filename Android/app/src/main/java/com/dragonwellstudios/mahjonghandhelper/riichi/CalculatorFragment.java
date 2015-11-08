@@ -10,6 +10,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.dragonwellstudios.mahjonghandhelper.R;
+import com.dragonwellstudios.mahjonghandhelper.riichi.calculator.CalculatorContract;
+import com.dragonwellstudios.mahjonghandhelper.riichi.calculator.CalculatorPresenter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,7 +21,7 @@ import butterknife.ButterKnife;
  * <p/>
  * Simple fragment to display a dialog using calculator_dialog.xml
  */
-public class CalculatorFragment extends DialogFragment {
+public class CalculatorFragment extends DialogFragment implements CalculatorContract.View {
 
     //region constants
     /**
@@ -43,6 +45,8 @@ public class CalculatorFragment extends DialogFragment {
     TextView scoreDisplay;
     //endregion
 
+    private CalculatorPresenter actionListener;
+
     @Override
     public void onStart() {
         super.onStart();
@@ -52,17 +56,35 @@ public class CalculatorFragment extends DialogFragment {
         hanPicker.setMaxValue(hanValues.length - 1);
         hanPicker.setDisplayedValues(hanValues);
 
+        hanPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                actionListener.setHan(newVal);
+            }
+        });
+
+        fuPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener(){
+
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                actionListener.setFu(newVal);
+            }
+        });
+
         fuPicker.setMaxValue(fuValues.length - 1);
         fuPicker.setDisplayedValues(fuValues);
 
-        StringResourcePayoutFormatter formatter =
-                new StringResourcePayoutFormatter(getContext().getResources(), R.string.payout);
-        scoreDisplay.setText(formatter.formatPayout(new Payout(2000, true)));
+        actionListener = new CalculatorPresenter(this, new StringResourcePayoutFormatter(getContext().getResources(), R.string.payout), new ScoreTable(null));
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.calculator_dialog, container);
+    }
+
+    @Override
+    public void showPayout(String payout) {
+        scoreDisplay.setText(payout);
     }
 }

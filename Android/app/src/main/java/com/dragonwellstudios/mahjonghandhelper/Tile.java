@@ -54,7 +54,7 @@ public final class Tile {
 
     @Suit int suit;
 
-    @IntRange(from = -1,to = 9)
+    @IntRange(from = 0,to = 9)
     int value;
 
     //region CONSTRUCTORS --------------------------------------------------------------------------
@@ -63,7 +63,7 @@ public final class Tile {
      */
     public Tile(){
         suit = Tile.BLANK;
-        value = -1;
+        value = 0;
     }
 
     /**

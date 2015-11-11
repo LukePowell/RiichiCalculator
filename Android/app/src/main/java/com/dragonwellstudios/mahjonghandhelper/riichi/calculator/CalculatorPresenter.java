@@ -1,6 +1,5 @@
 package com.dragonwellstudios.mahjonghandhelper.riichi.calculator;
 
-import com.dragonwellstudios.mahjonghandhelper.riichi.Payout;
 import com.dragonwellstudios.mahjonghandhelper.riichi.PayoutFormatter;
 import com.dragonwellstudios.mahjonghandhelper.riichi.ScoreTable;
 
@@ -13,10 +12,17 @@ public class CalculatorPresenter implements CalculatorContract.UserActionsListen
 
     private final ScoreTable table;
     CalculatorContract.View view;
-    int han;
-    int fu;
+
+    //Map an index given in setHan, setFu to the actual value it represents
+    int[] hanValues = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+    int[] fuValues = {20,25,30,40,50,60,70,80,90,100,110};
+
+    int han = hanValues[0];
+    int fu = fuValues[0];
     boolean dealer;
     PayoutFormatter formatter;
+
+
 
     /**
      * Calculate a CalculatorPresenter and connect it to the CalculatorContract.View it is
@@ -30,18 +36,23 @@ public class CalculatorPresenter implements CalculatorContract.UserActionsListen
     }
 
     private void showPayout(){
-        view.showPayout(formatter.formatPayout(table.getPayout(han,fu,false,true)));
+        view.showPayout(formatter.formatPayout(table.getPayout(han,fu,dealer,true)));
+    }
+
+    @Override
+    public void initialize() {
+        showPayout();
     }
 
     @Override
     public void setHan(int han) {
-        this.han = han;
+        this.han = hanValues[han];
         showPayout();
     }
 
     @Override
     public void setFu(int fu) {
-        this.fu = fu;
+        this.fu = fuValues[fu];
         showPayout();
     }
 
@@ -49,5 +60,10 @@ public class CalculatorPresenter implements CalculatorContract.UserActionsListen
     public void setDealer(boolean dealer) {
         this.dealer = dealer;
         showPayout();
+    }
+
+    @Override
+    public void setKiriage(boolean kiriage) {
+
     }
 }

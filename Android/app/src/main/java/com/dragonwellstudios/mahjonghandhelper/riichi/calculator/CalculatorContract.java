@@ -13,8 +13,10 @@ public class CalculatorContract {
     }
 
     public interface UserActionsListener{
+        void initialize();
         void setHan(int han);
         void setFu(int fu);
         void setDealer(boolean dealer);
+        void setKiriage(boolean kiriage);
     }
 }

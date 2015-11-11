@@ -6,6 +6,8 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -43,6 +45,8 @@ public class CalculatorFragment extends DialogFragment implements CalculatorCont
     NumberPicker fuPicker;
     @Bind(R.id.scoreDisplay)
     TextView scoreDisplay;
+    @Bind(R.id.dealerCheckBox)
+    CheckBox dealer;
     //endregion
 
     private CalculatorPresenter actionListener;
@@ -71,10 +75,17 @@ public class CalculatorFragment extends DialogFragment implements CalculatorCont
             }
         });
 
+        dealer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                actionListener.setDealer(isChecked);
+            }
+        });
         fuPicker.setMaxValue(fuValues.length - 1);
         fuPicker.setDisplayedValues(fuValues);
 
         actionListener = new CalculatorPresenter(this, new StringResourcePayoutFormatter(getContext().getResources(), R.string.payout), new ScoreTable(null));
+        actionListener.initialize();
     }
 
     @Nullable

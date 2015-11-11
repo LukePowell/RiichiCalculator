@@ -8,20 +8,20 @@ import com.dragonwellstudios.mahjonghandhelper.riichi.ScoreTable;
  *
  * Presents a Calculator
  */
-public class CalculatorPresenter implements CalculatorContract.UserActionsListener {
+public final class CalculatorPresenter implements CalculatorContract.UserActionsListener {
 
     private final ScoreTable table;
-    CalculatorContract.View view;
+    private CalculatorContract.View view;
 
     //Map an index given in setHan, setFu to the actual value it represents
-    int[] hanValues = {1,2,3,4,5,6,7,8,9,10,11,12,13};
-    int[] fuValues = {20,25,30,40,50,60,70,80,90,100,110};
+    private final int[] hanValues = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+    private final int[] fuValues = {20,25,30,40,50,60,70,80,90,100,110};
 
-    int han = hanValues[0];
-    int fu = fuValues[0];
-    boolean dealer;
-    PayoutFormatter formatter;
-
+    private int han = hanValues[0];
+    private int fu = fuValues[0];
+    private boolean dealer;
+    private PayoutFormatter formatter;
+    private boolean kirage;
 
 
     /**
@@ -64,6 +64,7 @@ public class CalculatorPresenter implements CalculatorContract.UserActionsListen
 
     @Override
     public void setKiriage(boolean kiriage) {
-
+        this.kirage = true;
+        showPayout();
     }
 }

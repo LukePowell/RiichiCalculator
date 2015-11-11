@@ -19,8 +19,7 @@
 package com.dragonwellstudios.mahjonghandhelper;
 
 
-
-
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -28,10 +27,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dragonwellstudios.mahjonghandhelper.riichi.CalculatorFragment;
 import com.dragonwellstudios.mahjonghandhelper.riichi.fragments.YakuFragment;
 
 import butterknife.Bind;
@@ -56,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            new CalculatorFragment().show(getSupportFragmentManager(), "score_calculator");
             return true;
         }
 
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
 
-        manager.beginTransaction().replace(R.id.content,fragment).commit();
+        manager.beginTransaction().replace(R.id.content, fragment).commit();
     }
     //endregion
 }

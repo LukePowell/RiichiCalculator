@@ -10,21 +10,21 @@ public class Payout {
     /**
      * Payment made by dealer
      */
-    public final int PAYOUT_DEALER = 0;
+    public final static int PAYOUT_DEALER = 0;
     /**
      * Payment made by non-dealer
      */
-    public final int PAYOUT_NONDEALER = 1;
+    public final static int PAYOUT_NONDEALER = 1;
     /**
      * Payment by dealer tsumo or ron by dealer or non-dealer
      */
-    public final int PAYOUT_ALL_OR_SINGLE = 0;
+    public final static int PAYOUT_ALL_OR_SINGLE = 0;
 
-    public final int NONE = 0;
-    public final int HANEMAN = 1;
-    public final int BAIMAN = 3;
-    public final int SANBAIMAN = 4;
-    public final int YAKUMAN = 5;
+    public final static int NONE = 0;
+    public final static int HANEMAN = 1;
+    public final static int BAIMAN = 3;
+    public final static int SANBAIMAN = 4;
+    public final static int YAKUMAN = 5;
     //endregion
 
     int[] payments;//Allows us to store 1 to 2 ints as needed
@@ -32,13 +32,13 @@ public class Payout {
     int type;
 
     //region CONSTRUCTORS
-    public Payout(int dealerPays,int nonDealerPays, boolean ron, int type){
+    public Payout(int dealerPays, int nonDealerPays, boolean ron) {
         payments = new int[]{dealerPays,nonDealerPays};
         this.type = type;
         this.ron = ron;
     }
 
-    public Payout(int allPayOrSinglePay, boolean ron, int type) {
+    public Payout(int allPayOrSinglePay, boolean ron) {
         payments = new int[]{allPayOrSinglePay};
         this.type = type;
         this.ron = ron;

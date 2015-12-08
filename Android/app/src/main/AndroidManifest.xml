@@ -17,8 +17,9 @@
   ~  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
   ~
   -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dragonwellstudios.mahjonghandhelper" >
+<manifest
+    package="com.dragonwellstudios.mahjonghandhelper"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -34,6 +35,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="04f97365cec556f4f43515566ec131fc9c913be8"/>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

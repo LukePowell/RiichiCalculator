@@ -1,15 +1,22 @@
 package com.dragonwellstudios.mahjonghandhelper.riichi;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.dragonwellstudios.mahjonghandhelper.R;
+import com.dragonwellstudios.mahjonghandhelper.riichi.calculator.CalculatorContract;
+import com.dragonwellstudios.mahjonghandhelper.riichi.calculator.CalculatorPresenter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,7 +26,7 @@ import butterknife.ButterKnife;
  * <p/>
  * Simple fragment to display a dialog using calculator_dialog.xml
  */
-public class CalculatorFragment extends DialogFragment {
+public class CalculatorFragment extends DialogFragment implements CalculatorContract.View {
 
     //region constants
     /**
@@ -41,7 +48,11 @@ public class CalculatorFragment extends DialogFragment {
     NumberPicker fuPicker;
     @Bind(R.id.scoreDisplay)
     TextView scoreDisplay;
+    @Bind(R.id.dealerCheckBox)
+    CheckBox dealer;
     //endregion
+
+    private CalculatorPresenter actionListener;
 
     @Override
     public void onStart() {
@@ -52,17 +63,50 @@ public class CalculatorFragment extends DialogFragment {
         hanPicker.setMaxValue(hanValues.length - 1);
         hanPicker.setDisplayedValues(hanValues);
 
+        hanPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                actionListener.setHan(newVal);
+            }
+        });
+
+        fuPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener(){
+
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                actionListener.setFu(newVal);
+            }
+        });
+
+        dealer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                actionListener.setDealer(isChecked);
+            }
+        });
         fuPicker.setMaxValue(fuValues.length - 1);
         fuPicker.setDisplayedValues(fuValues);
 
-        StringResourcePayoutFormatter formatter =
-                new StringResourcePayoutFormatter(getContext().getResources(), R.string.payout);
-        scoreDisplay.setText(formatter.formatPayout(new Payout(2000, true)));
+        actionListener = new CalculatorPresenter(this, new StringResourcePayoutFormatter(getContext().getResources(), R.string.payout), new ScoreTable(null));
+        actionListener.initialize();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.calculator_dialog, container);
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
+    }
+
+    @Override
+    public void showPayout(String payout) {
+        scoreDisplay.setText(payout);
     }
 }
